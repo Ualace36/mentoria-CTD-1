@@ -1,25 +1,36 @@
-package com.mentoria.ctd.apibancaria.model;
+package com.mentoria.ctd.apibancaria.model.dto;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class EnderecoDTO implements Serializable {
+
+    private Long idEndereco;
     private String rua;
     private String numero;
     private String complemento;
     private String bairro;
-    private String cep;
-    private String cidadade;
     private String estado;
+    private String cidade;
 
-    public Endereco() {
+    public EnderecoDTO() {
     }
 
-    public Endereco(String rua, String numero, String complemento, String bairro, String cep, String cidadade, String estado) {
+    public EnderecoDTO(Long idEndereco, String rua, String numero, String complemento, String bairro, String estado, String cidade) {
+        this.idEndereco = idEndereco;
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
-        this.cep = cep;
-        this.cidadade = cidadade;
         this.estado = estado;
+        this.cidade = cidade;
+    }
+
+    public Long getIdEndereco() {
+        return idEndereco;
+    }
+
+    public void setIdEndereco(Long idEndereco) {
+        this.idEndereco = idEndereco;
     }
 
     public String getRua() {
@@ -54,27 +65,19 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
-    public String getCidadade() {
-        return cidadade;
-    }
-
-    public void setCidadade(String cidadade) {
-        this.cidadade = cidadade;
-    }
-
     public String getEstado() {
         return estado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }

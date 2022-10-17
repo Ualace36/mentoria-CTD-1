@@ -1,21 +1,31 @@
 package com.mentoria.ctd.apibancaria.model;
 
-public class Titular {
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+
+@Entity
+public class TitularEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
     private String sobrenome;
+    @NotNull
     private String cpf;
-    Endereco endereco;
+    @OneToOne
+    @JoinColumn(name = "idEndereco", referencedColumnName ="idEndereco" )
+    private EnderecoEntity enderecoEntity;
 
-    public Titular() {
+    public TitularEntity() {
     }
 
-    public Titular(Long id, String nome, String sobrenome, String cpf, Endereco endereco) {
+    public TitularEntity(Long id, String nome, String sobrenome, String cpf, EnderecoEntity enderecoEntity) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
-        this.endereco = endereco;
+        this.enderecoEntity = enderecoEntity;
     }
 
     public Long getId() {
@@ -50,11 +60,11 @@ public class Titular {
         this.cpf = cpf;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public EnderecoEntity getEndereco() {
+        return enderecoEntity;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setEndereco(EnderecoEntity enderecoEntity) {
+        this.enderecoEntity = enderecoEntity;
     }
 }

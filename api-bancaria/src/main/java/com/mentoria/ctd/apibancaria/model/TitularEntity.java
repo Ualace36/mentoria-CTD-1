@@ -5,6 +5,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "TITULAR")
 public class TitularEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,7 +15,7 @@ public class TitularEntity {
     @NotNull
     private String cpf;
     @OneToOne
-    @JoinColumn(name = "idEndereco", referencedColumnName ="idEndereco" )
+    @JoinColumn(name = "cep", referencedColumnName ="cep" )
     private EnderecoEntity enderecoEntity;
 
     public TitularEntity() {
@@ -67,4 +68,7 @@ public class TitularEntity {
     public void setEndereco(EnderecoEntity enderecoEntity) {
         this.enderecoEntity = enderecoEntity;
     }
+
+
+
 }

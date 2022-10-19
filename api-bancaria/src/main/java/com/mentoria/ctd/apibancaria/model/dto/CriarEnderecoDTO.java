@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CriarEnderecoDTO implements Serializable {
 
-    private Long idEndereco;
+    private String cep;
     private String rua;
     private String numero;
     private String complemento;
@@ -12,8 +12,8 @@ public class CriarEnderecoDTO implements Serializable {
     private String estado;
     private String cidade;
 
-    public CriarEnderecoDTO(Long idEndereco, String rua, String numero, String complemento, String bairro, String estado, String cidade) {
-        this.idEndereco = idEndereco;
+    public CriarEnderecoDTO(String cep, String rua, String numero, String complemento, String bairro, String estado, String cidade) {
+        this.cep = cep;
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
@@ -22,12 +22,12 @@ public class CriarEnderecoDTO implements Serializable {
         this.cidade = cidade;
     }
 
-    public Long getIdEndereco() {
-        return idEndereco;
+    public String getCep() {
+        return cep;
     }
 
-    public void setIdEndereco(Long idEndereco) {
-        this.idEndereco = idEndereco;
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getRua() {

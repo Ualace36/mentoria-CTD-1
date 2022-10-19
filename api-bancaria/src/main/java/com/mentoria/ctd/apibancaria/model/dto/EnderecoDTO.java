@@ -3,8 +3,7 @@ package com.mentoria.ctd.apibancaria.model.dto;
 import java.io.Serializable;
 
 public class EnderecoDTO implements Serializable {
-
-    private Long idEndereco;
+    private String cep;
     private String rua;
     private String numero;
     private String complemento;
@@ -15,8 +14,8 @@ public class EnderecoDTO implements Serializable {
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(Long idEndereco, String rua, String numero, String complemento, String bairro, String estado, String cidade) {
-        this.idEndereco = idEndereco;
+    public EnderecoDTO(String cep, String rua, String numero, String complemento, String bairro, String estado, String cidade) {
+        this.cep = cep;
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
@@ -25,13 +24,6 @@ public class EnderecoDTO implements Serializable {
         this.cidade = cidade;
     }
 
-    public Long getIdEndereco() {
-        return idEndereco;
-    }
-
-    public void setIdEndereco(Long idEndereco) {
-        this.idEndereco = idEndereco;
-    }
 
     public String getRua() {
         return rua;

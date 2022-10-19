@@ -1,5 +1,7 @@
 package com.mentoria.ctd.apibancaria.model.dto;
 
+import com.mentoria.ctd.apibancaria.model.EnderecoEntity;
+
 import java.io.Serializable;
 
 public class CriarTItularDTO implements Serializable {
@@ -7,12 +9,14 @@ public class CriarTItularDTO implements Serializable {
     private String nome;
     private  String sobrenome;
     private String cpf;
+    private EnderecoEntity enderecoEntity;
 
-    public CriarTItularDTO(Long idTitular, String nome, String sobrenome, String cpf) {
+    public CriarTItularDTO(Long idTitular, String nome, String sobrenome, String cpf, EnderecoEntity enderecoEntity) {
         this.idTitular = idTitular;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
+        this.enderecoEntity = enderecoEntity;
     }
 
     public Long getIdTitular() {
@@ -45,5 +49,13 @@ public class CriarTItularDTO implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public EnderecoEntity getEnderecoEntity() {
+        return enderecoEntity;
+    }
+
+    public void setEnderecoEntity(EnderecoEntity enderecoEntity) {
+        this.enderecoEntity = enderecoEntity;
     }
 }

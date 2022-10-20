@@ -1,7 +1,6 @@
 package com.mentoria.ctd.apibancaria.controller;
 
-import com.mentoria.ctd.apibancaria.exception.TitularNotFoundException;
-import com.mentoria.ctd.apibancaria.mapper.TitularMapper;
+
 import com.mentoria.ctd.apibancaria.model.TitularEntity;
 import com.mentoria.ctd.apibancaria.service.serviceImpl.TitularServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,10 @@ import org.springframework.web.bind.annotation.*;
 public class TitularController {
     @Autowired
     private final TitularServiceImpl titularService;
-    private final TitularMapper titularMapper;
 
 
-    public TitularController(TitularServiceImpl titularService, TitularMapper titularMapper) {
+    public TitularController(TitularServiceImpl titularService) {
         this.titularService = titularService;
-        this.titularMapper = titularMapper;
     }
 //    @GetMapping
 //    public ResponseEntity<List<TitularDTO>> getAll(){
@@ -57,7 +54,17 @@ public class TitularController {
         titularService.create(titularEntity);
         return ResponseEntity.ok(titularEntity);
     }
+     @DeleteMapping("/{id}")
+    public ResponseEntity deletar(@PathVariable Long id ){
+        titularService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TitularEntity> atualizar(@PathVariable Long id, @RequestBody TitularEntity titularEntity){
+        titularService.atualizar(id, titularEntity);
+        return ResponseEntity.ok(titularEntity);
+    }
 }
 
 

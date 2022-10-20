@@ -9,11 +9,12 @@ import com.mentoria.ctd.apibancaria.service.IService;
 import com.mentoria.ctd.apibancaria.service.IViaCepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
 @Service
-public class TitularServiceImpl implements IService{
+public class TitularServiceImpl implements IService {
 
     @Autowired
     private IViaCepService viaCepService;
@@ -21,8 +22,6 @@ public class TitularServiceImpl implements IService{
     private IEnderecoRepository enderecoRepository;
     @Autowired
     private ITitularRepository titularRepository;
-
-
 
 
 //    public List<TitularEntity> getAll(){
@@ -47,32 +46,58 @@ public class TitularServiceImpl implements IService{
 
 
     @Override
-    public TitularEntity getById(Long id){
+    public TitularEntity getById(@PathVariable Long id) throws TitularNotFoundException {
         Optional<TitularEntity> titularEntity = titularRepository.findById(id);
-        if (titularEntity == null){
+        if (titularEntity.isEmpty()) {
             throw new TitularNotFoundException(id);
         }
         return titularEntity.get();
     }
 
     @Override
-    public Iterable <TitularEntity> getAll(){
+    public Iterable<TitularEntity> getAll() {
         return titularRepository.findAll();
+
     }
 
     @Override
-    public void delete(Long id){
+    public void delete(@PathVariable Long id) throws TitularNotFoundException {
         titularRepository.deleteById(id);
+        if (titularRepository.existsById(id)) {
+            throw new TitularNotFoundException(id);
+        }
+
     }
 
     @Override
     public void create(TitularEntity titularEntity) {
         String cep = titularEntity.getEndereco().getCep();
         EnderecoEntity enderecoEntity = enderecoRepository.findById(cep).orElseGet(() -> {
-            EnderecoEntity novoEndereco = viaCepService.consultarCep( cep);
+            EnderecoEntity novoEndereco = viaCepService.consultarCep(cep);
             enderecoRepository.save(novoEndereco);
             return novoEndereco;
-        }); titularEntity.setEndereco(enderecoEntity);
+        });
+        titularEntity.setEndereco(enderecoEntity);
         titularRepository.save(titularEntity);
     }
+
+    @Override
+    public void atualizar(Long id, TitularEntity titularEntity) {
+        Optional<TitularEntity> titulardb = titularRepository.findById(id);
+        if (titulardb.isPresent()) {
+            String cep = titularEntity.getEndereco().getCep();
+            EnderecoEntity enderecoEntity = enderecoRepository.findById(cep).orElseGet(() -> {
+                EnderecoEntity novoEndereco = viaCepService.consultarCep(cep);
+                enderecoRepository.save(novoEndereco);
+                return novoEndereco;
+            });
+            titularEntity.setEndereco(enderecoEntity);
+            titularRepository.save(titularEntity);
+        }
+    }
+
 }
+
+
+
+

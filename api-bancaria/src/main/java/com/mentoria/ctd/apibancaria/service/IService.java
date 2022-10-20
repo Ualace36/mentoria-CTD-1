@@ -1,10 +1,6 @@
 package com.mentoria.ctd.apibancaria.service;
 
-import com.mentoria.ctd.apibancaria.exception.TitularNotFoundException;
 import com.mentoria.ctd.apibancaria.model.TitularEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 public interface IService <T>{
 
@@ -19,4 +15,6 @@ public interface IService <T>{
     void delete(Long id);
 
     void create(TitularEntity titularEntity);
+
+    void atualizar(Long id, TitularEntity titularEntity);
 }

@@ -12,3 +12,4 @@ Springdoc-Openapi-Ui (Para criar a documentação Swagger da nossa API REST);
 spring-cloud-starter-openfeign (Para consumir uma API externa);
 Linguagem de Programação JAVA;
 Ferramenta de versionamento Git; 
+Aplicamos o teste com Junit 5 com a dependencia da maven rest-assured.

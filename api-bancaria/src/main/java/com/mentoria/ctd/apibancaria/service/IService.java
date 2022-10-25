@@ -14,7 +14,7 @@ public interface IService <T>{
 
     void delete(Long id);
 
-    void create(TitularEntity titularEntity);
+    TitularEntity create(TitularEntity titularEntity);
 
-    void atualizar(Long id, TitularEntity titularEntity);
+    TitularEntity atualizar(Long id, TitularEntity titularEntity);
 }

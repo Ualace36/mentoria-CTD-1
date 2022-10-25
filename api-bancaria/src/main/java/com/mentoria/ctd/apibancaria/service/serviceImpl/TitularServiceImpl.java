@@ -70,7 +70,7 @@ public class TitularServiceImpl implements IService {
     }
 
     @Override
-    public void create(TitularEntity titularEntity) {
+    public TitularEntity create(TitularEntity titularEntity) {
         String cep = titularEntity.getEndereco().getCep();
         EnderecoEntity enderecoEntity = enderecoRepository.findById(cep).orElseGet(() -> {
             EnderecoEntity novoEndereco = viaCepService.consultarCep(cep);
@@ -79,10 +79,11 @@ public class TitularServiceImpl implements IService {
         });
         titularEntity.setEndereco(enderecoEntity);
         titularRepository.save(titularEntity);
+        return titularEntity;
     }
 
     @Override
-    public void atualizar(Long id, TitularEntity titularEntity) {
+    public TitularEntity atualizar(Long id, TitularEntity titularEntity) {
         Optional<TitularEntity> titulardb = titularRepository.findById(id);
         if (titulardb.isPresent()) {
             String cep = titularEntity.getEndereco().getCep();
@@ -94,6 +95,7 @@ public class TitularServiceImpl implements IService {
             titularEntity.setEndereco(enderecoEntity);
             titularRepository.save(titularEntity);
         }
+        return titularEntity;
     }
 
 }
